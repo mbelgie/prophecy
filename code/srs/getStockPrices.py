@@ -1,10 +1,12 @@
 import sys
 import logger
 import argParser
+import saveStockPrices
 import yfinance as yf
 
 
 debug = False
+stocksDirectory = "../../data/stocks/"
 
 # returns the command line arguments (not including the script name)
 def getArgs():
@@ -24,7 +26,9 @@ def getData(options):
         data = yf.download(options[0], start=options[1], end=options[2], period=options[3], interval=options[4])
     else: 
         pass
+
     return data
+
 
 def main():
     validArgList = ["-t", "-s", "-e", "-p", "-i"]
@@ -32,14 +36,17 @@ def main():
     args = getArgs()
     # get the arguments frome the command line and organize them
     options = argParser.parseArgs(args, validArgList)
-    print(options)
+
     if options == -1:
         logger.error("Error: exiting")
         return -1
 
-    data = getData(options)
-    print(data)
+    try:
+        data = getData(options)
+    except:
+        return -1
 
+    
 
 if __name__ == '__main__':
     main()
