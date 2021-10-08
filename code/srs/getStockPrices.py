@@ -6,7 +6,7 @@ import yfinance as yf
 
 
 debug = False
-stocksDirectory = "../../data/stocks/"
+
 
 # returns the command line arguments (not including the script name)
 def getArgs():
@@ -38,7 +38,7 @@ def main():
     options = argParser.parseArgs(args, validArgList)
 
     if options == -1:
-        logger.error("Error: exiting")
+        logger.error("Exiting", debug)
         return -1
 
     try:
@@ -46,7 +46,8 @@ def main():
     except:
         return -1
 
-    
+    # options[0] is the stock ticker symbol
+    saveStockPrices.save(data, options[0])
 
 if __name__ == '__main__':
     main()
