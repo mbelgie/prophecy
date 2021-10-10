@@ -1,8 +1,12 @@
 import logger
+import subprocess
+import os
 
 # variables for debugging and verbose statements
 debug = False
 verbose = False
+
+stockDataDir = "../../data/stocks/"
 
 
 # parses the users arguments
@@ -15,6 +19,37 @@ def parseArgs(args, validArgList):
     if options[0] == None:
         logger.error("No ticker symbol was given", debug)
         return -1
+
+    options = modifyOptions(options)
+
+    return options
+
+
+# checks the last recorded time and date of the desired stock
+def getLastDate(ticker):
+    file = open(stockDataDir + str(ticker) + ".txt", "r")
+    for line in file:
+        lastLine = line    
+
+    return lastLine
+
+
+# checks if the date in the command line argument is before the last date in the stock file
+def checkFirstDate(fileDate, argDate):
+    if int(fileDate[:4]) >= int(argDate[:4]):
+        if int(fileDate[5:7]) >= int(argDate[5:7]):
+            if int(fileDate[8:10]) >= int(argDate[8:10]):
+                return fileDate
+    return argDate
+
+
+def modifyOptions(options):
+    filename = stockDataDir + options[0] + ".txt"
+    if not os.path.exists(filename):
+        return options
+
+    fileDate = getLastDate(options[0])
+    options[1] = checkFirstDate(fileDate[:10], options[1])
 
     return options
 
@@ -31,8 +66,6 @@ def checkValidArg(arg1, arg2, options, validArgList):
     # assigns the proper argument to its right place in the options list
     options[validArgList.index(arg1)] = arg2
     return options
-    
-
 
 
 def printHelp():
