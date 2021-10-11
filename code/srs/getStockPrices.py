@@ -2,6 +2,7 @@ import sys
 import logger
 import argParser
 import saveStockPrices
+from datetime import datetime, timedelta
 import yfinance as yf
 
 
@@ -41,7 +42,7 @@ def main():
         logger.error("Exiting", debug)
         return -1
 
-    if options[1] == options[2]:
+    if str((datetime.strptime(options[1], '%Y-%m-%d') + timedelta(days=1)).date()) == options[2]:
         logger.log("Stock data for " + str(options[0]) + " is already up to date", debug)
 
     try:
