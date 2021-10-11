@@ -6,7 +6,7 @@ import os
 debug = False
 verbose = False
 
-stockDataDir = "../../data/stocks/"
+stockDataDir = "/home/michael/prophecy/prophecy/data/stocks/"
 
 
 # parses the users arguments

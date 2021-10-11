@@ -3,7 +3,7 @@ import os
 from datetime import datetime
 
 debug = False
-stockDataDir = "../../data/stocks/"
+stockDataDir = "/home/michael/prophecy/prophecy/data/stocks/"
 tickersFile = stockDataDir + "tickers.txt"
 
 
@@ -47,6 +47,7 @@ def writeData(file, data):
         price = formatStockPrice(dataList[i][0])
         file.write(str(data.axes[0][i])[0:19] + " " + str(price) + "\n")
 
+
 def writeTicker(tickerExist, ticker):
     if tickerExist:
         return
@@ -54,8 +55,6 @@ def writeTicker(tickerExist, ticker):
         file = open(tickersFile, 'a')
         file.write(ticker + "\n")
         file.close()
-
-
 
 
 def save(data, ticker):

@@ -41,6 +41,9 @@ def main():
         logger.error("Exiting", debug)
         return -1
 
+    if options[1] == options[2]:
+        logger.log("Stock data for " + str(options[0]) + " is already up to date", debug)
+
     try:
         data = getData(options)
     except:

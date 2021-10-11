@@ -1,7 +1,7 @@
 import os
 from datetime import datetime
 
-logsDirectory = "../../data/logs/"
+logsDirectory = "/home/michael/prophecy/prophecy/data/logs/"
 
 def createLog(debug):
     fileName = "log_file_"
