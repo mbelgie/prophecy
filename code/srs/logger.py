@@ -3,6 +3,9 @@ from datetime import datetime
 
 logsDirectory = "/home/michael/prophecy/prophecy/data/logs/"
 
+#TODO copy old log file and create new one when they get too big
+
+
 def createLog(debug):
     fileName = "log_file_"
     if debug == True:
