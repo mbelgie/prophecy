@@ -6,6 +6,7 @@ logsDirectory = "/home/michael/prophecy/prophecy/data/logs/"
 #TODO copy old log file and create new one when they get too big
 
 
+# creates a new error log 
 def createLog(debug):
     fileName = "log_file_"
     if debug == True:
@@ -31,6 +32,7 @@ def getCurrentLogNumber(debug):
                 logNumber = tempNumber
     return logNumber
 
+# opens a pre existing error log
 def openLog(debug):
     logNumber = getCurrentLogNumber(debug)
     fileName = "log_file_"
@@ -40,11 +42,13 @@ def openLog(debug):
     file = open(str(logsDirectory) + str(fileName), 'a')
     return file
 
+# adds a message to the log
 def log(message, debug):
     file = openLog(debug)
     file.write(str(datetime.now().strftime("%Y-%m-%d %H:%M:%S")) + ": " + message + '\n')
     file.close()
 
+# adds an error to the log
 def error(message, debug):
     file = openLog(debug)
     file.write(str(datetime.now().strftime("%Y-%m-%d %H:%M:%S")) + ": ERROR - " + message + '\n')
