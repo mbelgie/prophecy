@@ -3,9 +3,21 @@ from datetime import datetime
 
 logsDirectory = "/home/michael/prophecy/prophecy/data/logs/"
 
-#TODO copy old log file and create new one when they get too big
-def checkLogSize():
-    pass
+
+# checks the log size and checks if it os over the threshold of lines
+# returns the name of the file which is to be opened
+def checkLogSize(debug):
+    logNumber = getCurrentLogNumber(debug)
+    fileName = "log_file_"
+    if debug == True:
+        fileName += "debug_"
+    fileName += str(logNumber)
+
+    numLines = sum(1 for line in open(logsDirectory + fileName))
+    
+    if numLines >= 150:
+        createLog(debug)
+    return fileName
 
 # creates a new error log 
 def createLog(debug):
@@ -35,11 +47,7 @@ def getCurrentLogNumber(debug):
 
 # opens a pre existing error log
 def openLog(debug):
-    logNumber = getCurrentLogNumber(debug)
-    fileName = "log_file_"
-    if debug == True:
-        fileName += "debug_"
-    fileName += str(logNumber)
+    fileName = checkLogSize(debug)
     file = open(str(logsDirectory) + str(fileName), 'a')
     return file
 
