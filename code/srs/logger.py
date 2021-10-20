@@ -15,7 +15,7 @@ def checkLogSize(debug):
 
     numLines = sum(1 for line in open(logsDirectory + fileName))
     
-    if numLines >= 150:
+    if numLines >= 1000:
         createLog(debug)
     return fileName
 
