@@ -7,6 +7,7 @@ stockDataDir = "/home/michael/prophecy/prophecy/data/stocks/"
 tickersFile = stockDataDir + "tickers.txt"
 
 
+# creates a file for a ticker
 def createFile(filename, ticker):
     logger.log("Creating stock data file for " + str(ticker), debug)
     file = open(filename, 'w')
@@ -15,6 +16,7 @@ def createFile(filename, ticker):
     logger.log("Created file successfully for " + str(ticker), debug)
 
 
+# checks id a file exists, if it doesn't, create it
 def checkFileExists(filename, ticker):
     if not os.path.exists(filename):
         createFile(filename, ticker)
@@ -31,25 +33,33 @@ def checkTickerExists(ticker):
     return False
 
 
+# opens a file to append to
 def openFileAppend(filename):
     file = open(filename, 'a')
     return file
 
 
+# opens a file, reads all of the lines and then closes it
 def openFileRead(filename):
     file = open(filename, 'r')
-    return file.readlines()
+    fileData = file.readlines()
+    file.close()
+    return fileData
 
 
+# formats the stock price by rounding it to the nearest hundredth of a cent (4 decima places)
 def formatStockPrice(price):
     return round(price, 4)
 
 
+# checks if a particular point of data is already been collected
 def checkDateTimeExists(fileData, dateTime):
     for line in fileData:
         if dateTime in line:
             return True
 
+
+# writes data to a file if it hasn't been collected already
 def writeData(file, data, fileData):
     dataList = data.values.tolist()
     numValues = len(dataList)
@@ -62,6 +72,7 @@ def writeData(file, data, fileData):
         file.write(str(data.axes[0][i])[0:19] + " " + str(price) + "\n")
 
 
+# writes new ticker to the ticker file if it doesn't exist in there already
 def writeTicker(tickerExist, ticker):
     if tickerExist:
         return
@@ -71,6 +82,7 @@ def writeTicker(tickerExist, ticker):
         file.close()
 
 
+# saves the ticker data
 def save(data, ticker):
     filename = stockDataDir + ticker + ".txt"
     tickerExist = checkTickerExists(ticker)
