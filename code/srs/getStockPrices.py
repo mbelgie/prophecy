@@ -42,6 +42,7 @@ def main():
         logger.error("Exiting", debug)
         return -1
 
+    # checks if stock data is up to date
     # if str((datetime.strptime(options[1], '%Y-%m-%d') + timedelta(days=1)).date()) == options[2]:
     #     logger.log("Stock data for " + str(options[0]) + " is already up to date", debug)
     #     return 0
