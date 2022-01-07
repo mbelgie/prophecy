@@ -4,7 +4,13 @@ from datetime import datetime
 logsDirectory = "/home/michael/prophecy/prophecy/data/logs/"
 
 
-# checks the log size and checks if it os over the threshold of lines
+# checks if an error log exists
+def checkLogExists(file):
+    if(not os.path.isfile(logsDirectory + file)):
+        return False
+    return True
+
+# checks if the log exists and the log size and checks if it os over the threshold of lines
 # returns the name of the file which is to be opened
 def checkLogSize(debug):
     logNumber = getCurrentLogNumber(debug)
@@ -12,6 +18,9 @@ def checkLogSize(debug):
     if debug == True:
         fileName += "debug_"
     fileName += str(logNumber)
+
+    if not checkLogExists(fileName):
+        createLog(debug)
 
     numLines = sum(1 for line in open(logsDirectory + fileName))
     
