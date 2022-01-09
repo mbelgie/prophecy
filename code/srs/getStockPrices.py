@@ -31,6 +31,13 @@ def getData(options):
     return data
 
 
+# used to get the arrays for the start and end dates 
+# we need an array of dates to use API calls consecutively since there is a maximum amount of data that can be transferred
+# if we want data ~30 minutes apart, we can only get a months worth of data
+def getDateArrays(startDate, endDate):
+    pass
+
+
 def main():
     validArgList = ["-t", "-s", "-e", "-p", "-i"]
 

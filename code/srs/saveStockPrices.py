@@ -47,7 +47,7 @@ def openFileRead(filename):
     return fileData
 
 
-# formats the stock price by rounding it to the nearest hundredth of a cent (4 decima places)
+# formats the stock price by rounding it to the nearest hundredth of a cent (4 decimal places)
 def formatStockPrice(price):
     return round(price, 4)
 
