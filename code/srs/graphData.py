@@ -18,16 +18,19 @@ def populateData(lines):
     dateList = []
     timeList = []
     priceList = []
+    # dateTimeList = []
     for line in lines:
         data = line.split()
         date = datetime.strptime(data[0], '%Y-%m-%d').date()
+        # dateAndTime = datetime.strptime(data[0] + " " + data[1], "%Y-%m-%d %H:%M:%S")
         time = data[1]
         price = data[2]
 
         dateList.append(date)
         timeList.append(time)
         priceList.append(price)
-    
+        # dateTimeList.append(dateAndTime)
+
     return dateList, timeList, priceList
         
 
