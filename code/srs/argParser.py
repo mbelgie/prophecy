@@ -28,6 +28,7 @@ def parseArgs(args, validArgList):
 # checks the last recorded time and date of the desired stock
 def getLastDate(ticker):
     file = open(stockDataDir + str(ticker) + ".txt", "r")
+    lastLine = ""
     for line in file:
         lastLine = line    
 
@@ -49,7 +50,8 @@ def modifyOptions(options):
         return options
 
     fileDate = getLastDate(options[0])
-    options[1] = checkFirstDate(fileDate[:10], options[1])
+    if fileDate != "":
+        options[1] = checkFirstDate(fileDate[:10], options[1])
 
     return options
 

@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import datetime
 import matplotlib.pyplot as plt
 import sys
 
@@ -20,7 +20,7 @@ def populateData(lines):
     priceList = []
     for line in lines:
         data = line.split()
-        date = data[0]
+        date = datetime.strptime(data[0], '%Y-%m-%d').date()
         time = data[1]
         price = data[2]
 
@@ -32,6 +32,9 @@ def populateData(lines):
         
 
 def plotData(dateList, timeList, priceList):
+    ax = plt.gca()
+    ax.set_yticks(ax.get_yticks()[::10])
+    
     plt.plot(dateList, priceList)
     plt.show()
     

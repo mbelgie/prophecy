@@ -11,7 +11,7 @@ tickersFile = stockDataDir + "tickers.txt"
 def createFile(filename, ticker):
     logger.log("Creating stock data file for " + str(ticker), debug)
     file = open(filename, 'w')
-    file.write("Stock data file created: " + str(datetime.now()) + "\n")
+    # file.write("Stock data file created: " + str(datetime.now()) + "\n")
     file.close()
     logger.log("Created file successfully for " + str(ticker), debug)
 
