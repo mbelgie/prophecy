@@ -14,3 +14,6 @@ test:
 plot:
 	python3 code/srs/graphData.py tsla	
 	# python3 code/srs/graphData.py amzn
+
+analyze:
+	python3 code/analysis/dataAnalyzer.py amzn
