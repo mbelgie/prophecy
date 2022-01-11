@@ -17,7 +17,7 @@ def openFileRead(filename):
 
 
 def buildCommandString(ticker):
-    commandString = "python3 ../code/srs/getStockPrices.py -t " + str(ticker) + " -s " + str(datetime.datetime.now().strftime("%Y-%m-%d")) + " -e " + \
+    commandString = "python3 /home/michael/prophecy/prophecy/code/srs/getStockPrices.py -t " + str(ticker) + " -s " + str(datetime.datetime.now().strftime("%Y-%m-%d")) + " -e " + \
     str(datetime.date.today() + datetime.timedelta(days=1)) + " -i 5m"
     
     return commandString
@@ -26,7 +26,7 @@ def buildCommandString(ticker):
 def main():
     sys.path.insert(1, '../code/logger')
     lines = openFileRead(tickersFile)
-    
+
     for ticker in lines:
         commandString = buildCommandString(ticker.strip())
         os.system(str(commandString))
