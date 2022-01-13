@@ -2,6 +2,9 @@ import sys
 import datetime
 import os
 
+sys.path.append('/home/michael/prophecy/prophecy/code/srs')
+import logger
+
 debug = False
 stockDataDir = "/home/michael/prophecy/prophecy/data/stocks/"
 
@@ -17,15 +20,18 @@ def openFileRead(filename):
 
 
 def buildCommandString(ticker):
-    commandString = "python3 /home/michael/prophecy/prophecy/code/srs/getStockPrices.py -t " + str(ticker) + " -s " + str(datetime.datetime.now().strftime("%Y-%m-%d")) + " -e " + \
-    str(datetime.date.today() + datetime.timedelta(days=1)) + " -i 5m"
+    commandString = "python3 /home/michael/prophecy/prophecy/code/srs/getStockPrices.py -t " + str(ticker) + \
+        " -s " + str(datetime.datetime.now().strftime("%Y-%m-%d")) + " -e " + \
+            str(datetime.date.today() + datetime.timedelta(days=1)) + " -i 5m"
     
     return commandString
 
 
 def main():
-    sys.path.insert(1, '../code/logger')
+    
     lines = openFileRead(tickersFile)
+
+    logger.log("Updating data", debug)
 
     for ticker in lines:
         commandString = buildCommandString(ticker.strip())

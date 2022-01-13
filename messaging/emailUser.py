@@ -3,10 +3,12 @@ import os
 import json
 import smtplib, ssl
 
-
+sys.path.append('/home/michael/prophecy/prophecy/code/srs')
+import logger
 
 jsonConfigFile = "/home/michael/prophecy/prophecy/messaging/messaging_config.json"
 
+debug = False
 
 # opens a file, reads all of the lines and then closes it
 def parseJson():
@@ -35,11 +37,16 @@ def sendEmail(sender, password, recipient, message):
         server.ehlo() # Can be omitted
         server.starttls(context=context) # Secure the connection
         server.ehlo() # Can be omitted
+
+        logger.log("Attempting email login for " + sender, debug)
         server.login(sender_email, password)
-        server.sendmail(sender, recipient, message)
+        # server.sendmail(sender, recipient, message)
+        logger.log("Message sent to " + recipient, debug)
+
 
     except Exception as e:
         # Print any error messages to stdout
+        logger.error(e)
         print(e)
     finally:
         server.quit() 
