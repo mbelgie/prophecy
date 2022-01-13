@@ -1,0 +1,8 @@
+{
+    "sender_email": "mbelgie.development@gmail.com",
+    "sender_email_password": "",
+    "recipients": {
+        "recipient1": "mbelgie@ualberta.ca",
+        "recipient2": "mbelgie10@gmail.com"
+    }
+}
