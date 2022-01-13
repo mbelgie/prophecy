@@ -40,7 +40,7 @@ def sendEmail(sender, password, recipient, message):
 
         logger.log("Attempting email login for " + sender, debug)
         server.login(sender_email, password)
-        # server.sendmail(sender, recipient, message)
+        server.sendmail(sender, recipient, message)
         logger.log("Message sent to " + recipient, debug)
 
 
