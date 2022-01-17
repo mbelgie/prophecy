@@ -26,7 +26,6 @@ def sendEmail(sender, password, recipient, message):
     smtp_server = "smtp.gmail.com"
     port = 587  # For starttls
     sender_email = sender
-    
 
     # Create a secure SSL context
     context = ssl.create_default_context()
@@ -43,11 +42,10 @@ def sendEmail(sender, password, recipient, message):
         server.sendmail(sender, recipient, message)
         logger.log("Message sent to " + recipient, debug)
 
-
     except Exception as e:
         # Print any error messages to stdout
         logger.error(e)
-        print(e)
+        
     finally:
         server.quit() 
 
@@ -60,7 +58,6 @@ def main():
     for recipient in recipients.values():
         sendEmail(senderEmail, senderEmailPassword, recipient, message)
     
-
 
 if __name__ == '__main__':
     main()
